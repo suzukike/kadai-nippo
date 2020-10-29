@@ -6,9 +6,14 @@
         <c:forEach var="error" items="${errors}">
             ・<c:out value="${error}" /><br />
         </c:forEach>
+
      </div>
 </c:if>
 <label for="code">社員番号</label><br />
+<input type="text" name="code" value="${employee.code}" />
+<br /><br />
+
+<label for="name">名前</label><br />
 <input type="text" name="name" value="${employee.name}" />
 <br /><br />
 
