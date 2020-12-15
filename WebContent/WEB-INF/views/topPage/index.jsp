@@ -16,6 +16,7 @@
                     <th class="report_name">氏名</th>
                     <th class="report_date">日付</th>
                     <th class="report_title">タイトル</th>
+                    <th class="report_like_count">いいね数</th>
                     <th class="report_action">操作</th>
                 </tr>
                 <c:forEach var="report" items="${reports}" varStatus="status">
@@ -23,6 +24,18 @@
                         <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${report.report_date}' pattern='yyyy-MM-dd-' /></td>
                         <td class="report_title">${report.title}</td>
+                        <c:choose>
+                            <c:when test="${report.like_count == 0}">
+                                <td class="report_like_count"><c:out value="${report.like_count}" /></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td class="report_like_count">
+                                    <a href="<c:url value='/likes/index?report_id=${report.id}' />"><c:out
+                                     value="${report.like_count}" />
+                                    </a>
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
                         <td class="report_action"><a href="<c:url value='/reports/show?id=${report.id}' />">詳細を見る</a></td>
                    </tr>
                 </c:forEach>
@@ -42,6 +55,7 @@
                 </c:choose>
             </c:forEach>
         </div>
+
         <p><a href="<c:url value='/reports/new' />">新規日報の登録</a></p>
     </c:param>
 </c:import>
